@@ -12,6 +12,7 @@
 		28485BB520FC2FE1000E63D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28485BB320FC2FE1000E63D0 /* Main.storyboard */; };
 		28485BB720FC2FE6000E63D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28485BB620FC2FE6000E63D0 /* Assets.xcassets */; };
 		28485BBA20FC2FE6000E63D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28485BB820FC2FE6000E63D0 /* LaunchScreen.storyboard */; };
+		4FBB3AEE1B205FF51B13CE6C /* Pods_MLKitSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93B0C828C491CAFADEBBD6B4 /* Pods_MLKitSample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		28485BB620FC2FE6000E63D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		28485BB920FC2FE6000E63D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		28485BBB20FC2FE6000E63D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DF1113E65512260147B831D /* Pods-MLKitSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLKitSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-MLKitSample/Pods-MLKitSample.release.xcconfig"; sourceTree = "<group>"; };
+		93B0C828C491CAFADEBBD6B4 /* Pods_MLKitSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MLKitSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7A412641BCFDBA54D70BA32 /* Pods-MLKitSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLKitSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MLKitSample/Pods-MLKitSample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FBB3AEE1B205FF51B13CE6C /* Pods_MLKitSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0662FBCA73538AEEE6AB45DA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F7A412641BCFDBA54D70BA32 /* Pods-MLKitSample.debug.xcconfig */,
+				8DF1113E65512260147B831D /* Pods-MLKitSample.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		28485BA320FC2FE1000E63D0 = {
 			isa = PBXGroup;
 			children = (
 				28485BAE20FC2FE1000E63D0 /* MLKitSample */,
 				28485BAD20FC2FE1000E63D0 /* Products */,
+				0662FBCA73538AEEE6AB45DA /* Pods */,
+				C2FB1FE046C1D500389F762F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +80,14 @@
 			path = MLKitSample;
 			sourceTree = "<group>";
 		};
+		C2FB1FE046C1D500389F762F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				93B0C828C491CAFADEBBD6B4 /* Pods_MLKitSample.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 28485BBE20FC2FE6000E63D0 /* Build configuration list for PBXNativeTarget "MLKitSample" */;
 			buildPhases = (
+				7F7550AB3711BCBD67B4AE95 /* [CP] Check Pods Manifest.lock */,
 				28485BA820FC2FE1000E63D0 /* Sources */,
 				28485BA920FC2FE1000E63D0 /* Frameworks */,
 				28485BAA20FC2FE1000E63D0 /* Resources */,
+				22219713C8017CDDBF64B5A3 /* [CP] Embed Pods Frameworks */,
+				ADE6EA6D316B9C8A73F0B0A6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -129,6 +156,71 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		22219713C8017CDDBF64B5A3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MLKitSample/Pods-MLKitSample-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleAPIClientForREST/GoogleAPIClientForREST.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleAPIClientForREST.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MLKitSample/Pods-MLKitSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F7550AB3711BCBD67B4AE95 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MLKitSample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADE6EA6D316B9C8A73F0B0A6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MLKitSample/Pods-MLKitSample-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleMobileVision/GoogleMVFaceDetectorResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMVFaceDetectorResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MLKitSample/Pods-MLKitSample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		28485BA820FC2FE1000E63D0 /* Sources */ = {
@@ -278,15 +370,13 @@
 		};
 		28485BBF20FC2FE6000E63D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7A412641BCFDBA54D70BA32 /* Pods-MLKitSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FB6D8X43R8;
 				INFOPLIST_FILE = MLKitSample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kboy.MLKitSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -296,15 +386,13 @@
 		};
 		28485BC020FC2FE6000E63D0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8DF1113E65512260147B831D /* Pods-MLKitSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FB6D8X43R8;
 				INFOPLIST_FILE = MLKitSample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kboy.MLKitSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
