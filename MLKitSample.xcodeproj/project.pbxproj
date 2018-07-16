@@ -12,6 +12,8 @@
 		28485BB520FC2FE1000E63D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28485BB320FC2FE1000E63D0 /* Main.storyboard */; };
 		28485BB720FC2FE6000E63D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28485BB620FC2FE6000E63D0 /* Assets.xcassets */; };
 		28485BBA20FC2FE6000E63D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28485BB820FC2FE6000E63D0 /* LaunchScreen.storyboard */; };
+		28485BC420FC8687000E63D0 /* UIUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28485BC320FC8687000E63D0 /* UIUtilities.swift */; };
+		28485BC620FC8E6B000E63D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28485BC520FC8E6B000E63D0 /* GoogleService-Info.plist */; };
 		4FBB3AEE1B205FF51B13CE6C /* Pods_MLKitSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93B0C828C491CAFADEBBD6B4 /* Pods_MLKitSample.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +25,8 @@
 		28485BB620FC2FE6000E63D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		28485BB920FC2FE6000E63D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		28485BBB20FC2FE6000E63D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28485BC320FC8687000E63D0 /* UIUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtilities.swift; sourceTree = "<group>"; };
+		28485BC520FC8E6B000E63D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8DF1113E65512260147B831D /* Pods-MLKitSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLKitSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-MLKitSample/Pods-MLKitSample.release.xcconfig"; sourceTree = "<group>"; };
 		93B0C828C491CAFADEBBD6B4 /* Pods_MLKitSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MLKitSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7A412641BCFDBA54D70BA32 /* Pods-MLKitSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MLKitSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MLKitSample/Pods-MLKitSample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -76,6 +80,8 @@
 				28485BB620FC2FE6000E63D0 /* Assets.xcassets */,
 				28485BB820FC2FE6000E63D0 /* LaunchScreen.storyboard */,
 				28485BBB20FC2FE6000E63D0 /* Info.plist */,
+				28485BC520FC8E6B000E63D0 /* GoogleService-Info.plist */,
+				28485BC320FC8687000E63D0 /* UIUtilities.swift */,
 			);
 			path = MLKitSample;
 			sourceTree = "<group>";
@@ -150,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28485BBA20FC2FE6000E63D0 /* LaunchScreen.storyboard in Resources */,
+				28485BC620FC8E6B000E63D0 /* GoogleService-Info.plist in Resources */,
 				28485BB720FC2FE6000E63D0 /* Assets.xcassets in Resources */,
 				28485BB520FC2FE1000E63D0 /* Main.storyboard in Resources */,
 			);
@@ -228,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28485BB220FC2FE1000E63D0 /* ViewController.swift in Sources */,
+				28485BC420FC8687000E63D0 /* UIUtilities.swift in Sources */,
 				28485BB020FC2FE1000E63D0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,7 +384,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FB6D8X43R8;
 				INFOPLIST_FILE = MLKitSample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.kboy.MLKitSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -392,7 +403,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FB6D8X43R8;
 				INFOPLIST_FILE = MLKitSample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.kboy.MLKitSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
