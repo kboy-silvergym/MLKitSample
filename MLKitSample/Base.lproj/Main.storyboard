@@ -22,17 +22,28 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1LZ-XL-hic">
+                                <rect key="frame" x="16" y="320" width="343" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gmJ-TX-k1g" firstAttribute="top" secondItem="J2g-Am-eyB" secondAttribute="top" id="0yq-Wu-dRN"/>
                             <constraint firstItem="tXY-VI-dnu" firstAttribute="trailing" secondItem="gmJ-TX-k1g" secondAttribute="trailing" id="230-kD-Vaa"/>
+                            <constraint firstItem="1LZ-XL-hic" firstAttribute="centerX" secondItem="J2g-Am-eyB" secondAttribute="centerX" id="NHB-1S-pHU"/>
                             <constraint firstAttribute="bottom" secondItem="gmJ-TX-k1g" secondAttribute="bottom" id="XVf-up-OGB"/>
+                            <constraint firstItem="1LZ-XL-hic" firstAttribute="centerY" secondItem="J2g-Am-eyB" secondAttribute="centerY" id="f6Y-Iq-ej9"/>
+                            <constraint firstItem="tXY-VI-dnu" firstAttribute="trailing" secondItem="1LZ-XL-hic" secondAttribute="trailing" constant="16" id="mWX-DR-NjK"/>
+                            <constraint firstItem="1LZ-XL-hic" firstAttribute="leading" secondItem="tXY-VI-dnu" secondAttribute="leading" constant="16" id="mZK-oM-M48"/>
                             <constraint firstItem="gmJ-TX-k1g" firstAttribute="leading" secondItem="tXY-VI-dnu" secondAttribute="leading" id="yd0-hH-9AU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tXY-VI-dnu"/>
                     </view>
                     <connections>
+                        <outlet property="infoLabel" destination="1LZ-XL-hic" id="h3M-1y-9c7"/>
                         <outlet property="previewView" destination="gmJ-TX-k1g" id="jml-RC-uBt"/>
                     </connections>
                 </viewController>

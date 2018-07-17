@@ -12,14 +12,12 @@ import Firebase
 
 class ViewController: UIViewController {
     @IBOutlet weak var previewView: UIView!
+    @IBOutlet weak var infoLabel: UILabel!
     
     var input: AVCaptureDeviceInput!
     var captureSession: AVCaptureSession!
     
     var camera: AVCaptureDevice!
-    
-    // Face
-    let shapeLayer = CAShapeLayer()
     
     private var previewLayer: AVCaptureVideoPreviewLayer!
     
@@ -47,14 +45,11 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        shapeLayer.frame = view.frame
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        shapeLayer.setAffineTransform(CGAffineTransform(scaleX: -1, y: -1))
-        view.layer.addSublayer(shapeLayer)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -169,9 +164,23 @@ class ViewController: UIViewController {
                     color: UIColor.green
                 )
                 
+                let angleY = face.headEulerAngleY
+                let angleZ = face.headEulerAngleZ
+                let smilingProbability = face.smilingProbability
+                let leftEyeOpenProbability = face.leftEyeOpenProbability
+                let rightEyeOpenProbability = face.rightEyeOpenProbability
+                
+                self.infoLabel.text = """
+                angleY:\(angleY)
+                angleZ:\(angleZ)
+                smilingProbability:\(smilingProbability)
+                leftEyeOpenProbability:\(leftEyeOpenProbability)
+                rightEyeOpenProbability:\(rightEyeOpenProbability)
+                """
+                
                 // TODO: 顔の特徴点表示
-                self.addLandmarks(forFace: face,
-                                  transform: self.transformMatrix(width: width, height: height))
+//                self.addLandmarks(forFace: face,
+//                                  transform: self.transformMatrix(width: width, height: height))
             }
         }
     }
