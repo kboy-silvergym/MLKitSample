@@ -168,29 +168,30 @@ class ViewController: UIViewController {
                     to: self.annotationOverlayView,
                     color: UIColor.green
                 )
-                //self.addLandmarks(forFace: face, transform: self.transformMatrix(face.frame.size))
+                
+                // TODO: 顔の特徴点表示
+                self.addLandmarks(forFace: face,
+                                  transform: self.transformMatrix(width: width, height: height))
             }
         }
     }
     
-    private func transformMatrix(_ faceSize: CGSize) -> CGAffineTransform {
+    private func transformMatrix(width: CGFloat, height: CGFloat) -> CGAffineTransform {
         let imageViewWidth = previewView.frame.size.width
         let imageViewHeight = previewView.frame.size.height
-        let imageWidth = previewLayer.frame.size.width
-        let imageHeight = previewLayer.frame.size.height
         
         let imageViewAspectRatio = imageViewWidth / imageViewHeight
-        let imageAspectRatio = imageWidth / imageHeight
+        let imageAspectRatio = width / height
         let scale = (imageViewAspectRatio > imageAspectRatio) ?
-            imageViewHeight / imageHeight :
-            imageViewWidth / imageWidth
+            imageViewHeight / height :
+            imageViewWidth / width
         
         // Image view's `contentMode` is `scaleAspectFit`, which scales the image to fit the size of the
         // image view by maintaining the aspect ratio. Multiple by `scale` to get image's original size.
-        let scaledImageWidth = imageWidth * scale
-        let scaledImageHeight = imageHeight * scale
-        let xValue = (imageViewWidth - scaledImageWidth) / CGFloat(2.0)
-        let yValue = (imageViewHeight - scaledImageHeight) / CGFloat(2.0)
+        let scaledImageWidth = width * scale
+        let scaledImageHeight = height * scale
+        let xValue = (width - scaledImageWidth) / CGFloat(2.0)
+        let yValue = (height - scaledImageHeight) / CGFloat(2.0)
         
         var transform = CGAffineTransform.identity.translatedBy(x: xValue, y: yValue)
         transform = transform.scaledBy(x: scale, y: scale)
@@ -201,11 +202,13 @@ class ViewController: UIViewController {
         // Mouth
         if let bottomMouthLandmark = face.landmark(ofType: .mouthBottom) {
             let landmarkPoint = landmarkPointFrom(bottomMouthLandmark.position)
+            print("before transform\(landmarkPoint)")
             let transformedPoint = landmarkPoint.applying(transform)
+            print(transformedPoint)
             UIUtilities.addCircle(
-                atPoint: landmarkPoint,
+                atPoint: transformedPoint,
                 to: annotationOverlayView,
-                color: UIColor.red,
+                color: .red,
                 radius: Constants.smallDotRadius
             )
         }
@@ -213,9 +216,9 @@ class ViewController: UIViewController {
             let landmarkPoint = landmarkPointFrom(leftMouthLandmark.position)
             let transformedPoint = landmarkPoint.applying(transform)
             UIUtilities.addCircle(
-                atPoint: landmarkPoint,
+                atPoint: transformedPoint,
                 to: annotationOverlayView,
-                color: UIColor.red,
+                color: .red,
                 radius: Constants.smallDotRadius
             )
         }
@@ -223,9 +226,9 @@ class ViewController: UIViewController {
             let landmarkPoint = landmarkPointFrom(rightMouthLandmark.position)
             let transformedPoint = landmarkPoint.applying(transform)
             UIUtilities.addCircle(
-                atPoint: landmarkPoint,
+                atPoint: transformedPoint,
                 to: annotationOverlayView,
-                color: UIColor.red,
+                color: .red,
                 radius: Constants.smallDotRadius
             )
         }
@@ -235,9 +238,9 @@ class ViewController: UIViewController {
             let landmarkPoint = landmarkPointFrom(noseBaseLandmark.position)
             let transformedPoint = landmarkPoint.applying(transform)
             UIUtilities.addCircle(
-                atPoint: landmarkPoint,
+                atPoint: transformedPoint,
                 to: annotationOverlayView,
-                color: UIColor.yellow,
+                color: .yellow,
                 radius: Constants.smallDotRadius
             )
         }
@@ -247,9 +250,9 @@ class ViewController: UIViewController {
             let landmarkPoint = landmarkPointFrom(leftEyeLandmark.position)
             let transformedPoint = landmarkPoint.applying(transform)
             UIUtilities.addCircle(
-                atPoint: landmarkPoint,
+                atPoint: transformedPoint,
                 to: annotationOverlayView,
-                color: UIColor.cyan,
+                color: .cyan,
                 radius: Constants.largeDotRadius
             )
         }
@@ -257,7 +260,7 @@ class ViewController: UIViewController {
             let landmarkPoint = landmarkPointFrom(rightEyeLandmark.position)
             let transformedPoint = landmarkPoint.applying(transform)
             UIUtilities.addCircle(
-                atPoint: landmarkPoint,
+                atPoint: transformedPoint,
                 to: annotationOverlayView,
                 color: UIColor.cyan,
                 radius: Constants.largeDotRadius
@@ -269,9 +272,9 @@ class ViewController: UIViewController {
             let landmarkPoint = landmarkPointFrom(leftEarLandmark.position)
             let transformedPoint = landmarkPoint.applying(transform)
             UIUtilities.addCircle(
-                atPoint: landmarkPoint,
+                atPoint: transformedPoint,
                 to: annotationOverlayView,
-                color: UIColor.purple,
+                color: .purple,
                 radius: Constants.largeDotRadius
             )
         }
@@ -279,9 +282,9 @@ class ViewController: UIViewController {
             let landmarkPoint = landmarkPointFrom(rightEarLandmark.position)
             let transformedPoint = landmarkPoint.applying(transform)
             UIUtilities.addCircle(
-                atPoint: landmarkPoint,
+                atPoint: transformedPoint,
                 to: annotationOverlayView,
-                color: UIColor.purple,
+                color: .purple,
                 radius: Constants.largeDotRadius
             )
         }
@@ -291,9 +294,9 @@ class ViewController: UIViewController {
             let landmarkPoint = landmarkPointFrom(leftCheekLandmark.position)
             let transformedPoint = landmarkPoint.applying(transform)
             UIUtilities.addCircle(
-                atPoint: landmarkPoint,
+                atPoint: transformedPoint,
                 to: annotationOverlayView,
-                color: UIColor.orange,
+                color: .orange,
                 radius: Constants.largeDotRadius
             )
         }
@@ -301,9 +304,9 @@ class ViewController: UIViewController {
             let landmarkPoint = landmarkPointFrom(rightCheekLandmark.position)
             let transformedPoint = landmarkPoint.applying(transform)
             UIUtilities.addCircle(
-                atPoint: landmarkPoint,
+                atPoint: transformedPoint,
                 to: annotationOverlayView,
-                color: UIColor.orange,
+                color: .orange,
                 radius: Constants.largeDotRadius
             )
         }

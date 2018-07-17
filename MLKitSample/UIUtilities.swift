@@ -155,4 +155,6 @@ enum Constants {
     static let largeDotRadius: CGFloat = 10.0
     static let lineColor = UIColor.yellow.cgColor
     static let fillColor = UIColor.clear.cgColor
+    static let videoDataOutputQueueLabel = "com.google.firebaseml.visiondetector.VideoDataOutputQueue"
+    static let sessionQueueLabel = "com.google.firebaseml.visiondetector.SessionQueue"
 }
