@@ -87,7 +87,6 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
             )
             previewRequestBuilder.addTarget(surface)
             cameraDevice?.createCaptureSession(Arrays.asList(surface, imageReader?.surface),
-                    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
                     object : CameraCaptureSession.StateCallback() {
 
                         override fun onConfigured(cameraCaptureSession: CameraCaptureSession) {
@@ -117,20 +116,8 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
     }
 
     fun requestCameraPermission() {
-        if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
-            AlertDialog.Builder(baseContext)
-                    .setMessage("Permission Here")
-                    .setPositiveButton(android.R.string.ok) { _, _ ->
-                        requestPermissions(arrayOf(Manifest.permission.CAMERA),
-                                200)
-                    }
-                    .setNegativeButton(android.R.string.cancel) { _, _ ->
-                        finish()
-                    }
-                    .create()
-        } else {
-            requestPermissions(arrayOf(Manifest.permission.CAMERA), 200)
-        }
+        requestPermissions(arrayOf(Manifest.permission.CAMERA),
+                200)
     }
 
     private fun startBackgroundThread() {
