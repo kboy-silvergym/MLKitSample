@@ -22,25 +22,16 @@ import android.view.Surface
 import android.view.TextureView
 import java.util.*
 
-
 class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsResultCallback {
-
     private lateinit var textureView: TextureView
     private var captureSession: CameraCaptureSession? = null
     private var cameraDevice: CameraDevice? = null
-    private val previewSize: Size = Size(300, 300) // FIXME:
+    private val previewSize: Size = Size(300, 300) // FIXME: for now.
     private lateinit var previewRequestBuilder: CaptureRequest.Builder
     private var imageReader: ImageReader? = null
     private lateinit var previewRequest: CaptureRequest
     private var backgroundThread: HandlerThread? = null
     private var backgroundHandler: Handler? = null
-
-    private var state = 0
-    private val STATE_PREVIEW = 0
-    private val STATE_WAITING_LOCK = 1
-    private val STATE_WAITING_PRECAPTURE = 2
-    private val STATE_WAITING_NON_PRECAPTURE = 3
-    private val STATE_PICTURE_TAKEN = 4
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,13 +46,12 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
 
         try {
             var camerId: String = manager.getCameraIdList()[0]
-
             val permission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+
             if (permission != PackageManager.PERMISSION_GRANTED) {
                 requestCameraPermission()
                 return
             }
-
             manager.openCamera(camerId, stateCallback, null);
         } catch (e: Exception) {
             e.printStackTrace()
@@ -71,13 +61,11 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
     private val stateCallback = object : CameraDevice.StateCallback() {
 
         override fun onOpened(cameraDevice: CameraDevice) {
-            //cameraOpenCloseLock.release()
             this@MainActivity.cameraDevice = cameraDevice
             createCameraPreviewSession()
         }
 
         override fun onDisconnected(cameraDevice: CameraDevice) {
-            //cameraOpenCloseLock.release()
             cameraDevice.close()
             this@MainActivity.cameraDevice = null
         }
@@ -92,41 +80,26 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
     private fun createCameraPreviewSession() {
         try {
             val texture = textureView.surfaceTexture
-
-            // We configure the size of default buffer to be the size of camera preview we want.
             texture.setDefaultBufferSize(previewSize.width, previewSize.height)
-
-            // This is the output Surface we need to start preview.
             val surface = Surface(texture)
-
-            // We set up a CaptureRequest.Builder with the output Surface.
             previewRequestBuilder = cameraDevice!!.createCaptureRequest(
                     CameraDevice.TEMPLATE_PREVIEW
             )
             previewRequestBuilder.addTarget(surface)
-
-            // Here, we create a CameraCaptureSession for camera preview.
             cameraDevice?.createCaptureSession(Arrays.asList(surface, imageReader?.surface),
                     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
                     object : CameraCaptureSession.StateCallback() {
 
                         override fun onConfigured(cameraCaptureSession: CameraCaptureSession) {
-                            // The camera is already closed
-                            if (cameraDevice == null) return
 
-                            // When the session is ready, we start displaying the preview.
+                            if (cameraDevice == null) return
                             captureSession = cameraCaptureSession
                             try {
-                                // Auto focus should be continuous for camera preview.
                                 previewRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE,
                                         CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE)
-                                // Flash is automatically enabled when necessary.
-                                //setAutoFlash(previewRequestBuilder)
-
-                                // Finally, we start displaying the camera preview.
                                 previewRequest = previewRequestBuilder.build()
                                 captureSession?.setRepeatingRequest(previewRequest,
-                                        captureCallback, Handler(backgroundThread?.looper))
+                                        null, Handler(backgroundThread?.looper))
                             } catch (e: CameraAccessException) {
                                 Log.e("erfs", e.toString())
                             }
@@ -141,33 +114,6 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
             Log.e("erf", e.toString())
         }
 
-    }
-
-    private val captureCallback = object : CameraCaptureSession.CaptureCallback() {
-
-        private fun process(result: CaptureResult) {
-            when (state) {
-                STATE_PREVIEW -> Unit // Do nothing when the camera preview is working normally.
-                STATE_WAITING_LOCK -> Unit//capturePicture(result)
-                STATE_WAITING_PRECAPTURE -> {
-                    // CONTROL_AE_STATE can be null on some devices
-                    val aeState = result.get(CaptureResult.CONTROL_AE_STATE)
-                    if (aeState == null ||
-                            aeState == CaptureResult.CONTROL_AE_STATE_PRECAPTURE ||
-                            aeState == CaptureRequest.CONTROL_AE_STATE_FLASH_REQUIRED) {
-                        state = STATE_WAITING_NON_PRECAPTURE
-                    }
-                }
-                STATE_WAITING_NON_PRECAPTURE -> {
-                    // CONTROL_AE_STATE can be null on some devices
-                    val aeState = result.get(CaptureResult.CONTROL_AE_STATE)
-                    if (aeState == null || aeState != CaptureResult.CONTROL_AE_STATE_PRECAPTURE) {
-                        state = STATE_PICTURE_TAKEN
-                        //captureStillPicture()
-                    }
-                }
-            }
-        }
     }
 
     fun requestCameraPermission() {
