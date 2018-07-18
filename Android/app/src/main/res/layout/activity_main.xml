@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <SurfaceView
+    <TextureView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/mySurfaceView" />

@@ -193,4 +193,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+/.idea/caches/build_file_checksums.ser
+
 # End of https://www.gitignore.io/api/macos,android,androidstudio
