@@ -22,7 +22,7 @@ Wrote flow for [here](https://qiita.com/k-boy/items/3b64c4e9921e29cc4471). (Writ
 
 ### Then called every time frame rendered, so pass the bitmap to Firebase MLKit
 
-```kotilin
+```kotlin
     private val mOnImageAvailableListener = ImageReader.OnImageAvailableListener {
         val bitmap = textureView.bitmap
         val visionImage = FirebaseVisionImage.fromBitmap(bitmap)
