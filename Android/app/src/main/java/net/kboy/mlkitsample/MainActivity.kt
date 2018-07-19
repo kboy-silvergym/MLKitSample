@@ -152,28 +152,24 @@ class MainActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsRes
 
     }
 
-    private val mOnImageAvailableListener = object : ImageReader.OnImageAvailableListener {
-
-        override fun onImageAvailable(reader: ImageReader?) {
-            val bitmap = textureView.bitmap
-            val visionImage = FirebaseVisionImage.fromBitmap(bitmap)
-            val options = FirebaseVisionFaceDetectorOptions.Builder()
-                    .setModeType(FirebaseVisionFaceDetectorOptions.FAST_MODE)
-                    .setLandmarkType(FirebaseVisionFaceDetectorOptions.ALL_LANDMARKS)
-                    .setClassificationType(FirebaseVisionFaceDetectorOptions.ALL_CLASSIFICATIONS)
-                    .setMinFaceSize(0.15f)
-                    .setTrackingEnabled(true)
-                    .build()
-            val detector = FirebaseVision.getInstance().getVisionFaceDetector(options)
-            detector.detectInImage(visionImage)
-                    .addOnSuccessListener {
-                        print("good job")
-                    }
-                    .addOnFailureListener {
-                        it.printStackTrace()
-                    }
-        }
-
+    private val mOnImageAvailableListener = ImageReader.OnImageAvailableListener {
+        val bitmap = textureView.bitmap
+        val visionImage = FirebaseVisionImage.fromBitmap(bitmap)
+        val options = FirebaseVisionFaceDetectorOptions.Builder()
+                .setModeType(FirebaseVisionFaceDetectorOptions.FAST_MODE)
+                .setLandmarkType(FirebaseVisionFaceDetectorOptions.ALL_LANDMARKS)
+                .setClassificationType(FirebaseVisionFaceDetectorOptions.ALL_CLASSIFICATIONS)
+                .setMinFaceSize(0.15f)
+                .setTrackingEnabled(true)
+                .build()
+        val detector = FirebaseVision.getInstance().getVisionFaceDetector(options)
+        detector.detectInImage(visionImage)
+                .addOnSuccessListener {
+                    print("good job")
+                }
+                .addOnFailureListener {
+                    it.printStackTrace()
+                }
     }
 
 }
